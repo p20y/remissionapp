@@ -31,19 +31,28 @@ Each phase is shippable and usable on its own.
 
 ### Phase 1 — MVP (core daily value)
 - Onboarding & profile (name, age, gender, diagnosis, year diagnosed, meds, treatment type, optional GI & emergency contact)
-- Home Dashboard — today's status, pain, bathroom visits, mood, energy, sleep, water, medication status, upcoming appointments, streak, quick actions, and the **"I'm Having a Flare"** button
-- Flare Mode quick-log (essential questions only, minimal effort)
-- Daily Symptom Tracker (15 trackable symptoms)
+  - **Age-conditional:** ages 11–18 simply flip on a "school & home life" section inside the daily check-in (classes missed, friends & social, family stress) — not a separate one-time picker
+  - **Gender-conditional:** selecting female surfaces an opt-in menstrual cycle tracker, to compare hormonal changes with symptom activity
+  - **Food triggers:** users self-identify trigger foods (dairy, gluten, spicy, fried/fatty, caffeine, alcohol, raw veggies, nuts/seeds, custom); later referenced (not diagnosed) at meal-logging time
+- Home Dashboard — today's status, pain, bathroom visits, mood, energy, sleep, water, medication status, upcoming appointments, streak, quick actions, an **AI summary for your doctor** preview, and the **"I'm Having a Flare"** button
+- **AI Doctor Summary** — patient-controlled multi-select checklist (stool/bathroom, blood, pain & flares, food & diet, sleep, mood, medication adherence) that scopes exactly what's included before an AI-organized summary is generated and shared or exported
+- Flare Mode quick-log (essential questions only, minimal effort), across two fast screens:
+  - Pain level + an **illustrated, tap-to-select digestive-tract body map** (stomach, small intestine, colon, anatomy-chart style with callout labels) with pain-type descriptors (stabbing, cramping, burning, dull ache, sharp, throbbing)
+  - A **Bristol stool chart** selector — all 7 types, larger icons with plain-language labels (Hard, Lumpy, Cracked, Smooth, Soft, Mushy, Liquid), color-coded sage/yellow/orange (typical / maybe a flare / flag for doctor) — plus blood, urgency, fever
+- Daily Check-in, split into two quick steps so nothing feels crammed:
+  - **Step 1:** pain and fatigue on **0–10 sliders**, nausea (yes/no), appetite, water intake, optional weight
+  - **Step 2:** remaining physical symptoms (bloating, joint pain, gas, mouth sores, headache, skin), plus — **only rendered for teen accounts (ages 11–18)** — classes missed, friends & social, family stress
 - Bathroom Tracker — one-tap logging, Bristol scale, weekly/monthly trend graphs
-- Medication Manager + basic local reminders (pills, liquid, biologics, infusions, injectables)
-- Calendar (good day / mild flare / severe flare color-coding)
+- Food & Hydration Journal (minimal, Phase 1 slice) — meal logging surfaces a gentle, non-alarmist heads-up when a logged ingredient matches a self-identified trigger
+- Medication Manager — pills, liquid, biologics, infusions, injectables; one-tap **"Mark as taken"** and an editable **reminder time** per dose; an optional **post-dose quick-log** of small tappable boxes tuned to medication type (Sore / Swelling for injectables, Nausea / Stomach pain for oral) with a free-text "Other"
+- Calendar (good day / maybe-a-flare / flare color-coding)
 - Dark mode + large text (accessibility from day 1)
 
 ### Phase 2 — Treatment depth & family use
 - Smart Treatment Reminders (infusion prep/hydration; injection numbing cream, ice pack, fridge removal, site rotation, needle disposal)
-- Medication Response Tracker (post-dose observations & long-term trends)
+- Medication Response Tracker (long-term trends built on top of the Phase 1 post-dose quick-log boxes)
 - Injection Site Tracker (location, reactions, photos)
-- Food & Hydration Journal (meals, snacks, drinks, water, portions, photos)
+- Food & Hydration Journal — full version (portions, photos, meal-time patterns) building on the Phase 1 trigger-alert slice
 - Mood & Mental Wellness tracker (mood + influences, trend comparisons)
 - Sleep Tracker (bedtime, wake, quality, awakenings, hours)
 - Emergency Information storage
@@ -122,9 +131,9 @@ users/{userId}
   profile (doc)            — name, age, gender, diagnosis, yearDiagnosed,
                              treatmentType, gastroenterologist?, accountRole
   emergencyInfo (doc)      — contacts, GI, PCP, hospital, insurance, allergies
-  dailySymptomLogs/{id}    — pain, fatigue, nausea, appetite, energy, sleep,
-                             temperature, weight, jointPain, mouthSores,
-                             skinProblems, bloating, gas, headaches, overall
+  dailySymptomLogs/{id}    — pain (0-10), fatigue (0-10), nausea, appetite, energy,
+                             sleep, waterIntake, temperature, weight?, jointPain,
+                             mouthSores, skinProblems, bloating, gas, headaches, overall
   flareLogs/{id}           — painLevel, painLocation, painType, bathroomFreq,
                              blood, mucus, urgency, fever, nausea, vomiting,
                              fatigue, appetite, stress, recentFood, medsTaken, notes
@@ -135,8 +144,10 @@ users/{userId}
   medications/{medId}      — name, type (pill/liquid/biologic/infusion/injectable),
                              dose, frequency, schedule, refillThreshold
     doses/{doseId}         — scheduledTime, takenTime? (null → missed/late)
-    responses/{id}         — painImprovement, fatigue, energy, nausea, appetite,
-                             sideEffects, overallEffectiveness
+    responses/{id}         — quick-log boxes (type-aware: sore/swelling for
+                             injectables, nausea/stomachPain for oral), otherText?,
+                             painImprovement, fatigue, energy, appetite,
+                             overallEffectiveness
   injectionSiteLogs/{id}   — location, redness, swelling, bruising, pain, itching,
                              warmth, bleeding, lump, duration, photoRef?, notes
   moodLogs/{id}            — mood (happy/calm/neutral/anxious/sad/frustrated/
@@ -184,7 +195,8 @@ families/{familyId}
 
 ## 12. Design Language
 
-- Soft blues (#4A90D9-family), greens (sage/mint), warm neutrals
+- Base palette: **sky blue** (primary/everyday) and **sage** (positive/good), warm neutral "mist" grounds
+- Severity is a strict three-color system, used consistently everywhere it appears (stool coding, bathroom trend charts, calendar, Flare Mode): **sage = good**, **yellow = maybe a flare**, **orange = flare** — never mixed with unrelated UI accents
 - Rounded cards (16–24px radii), generous spacing, large friendly buttons
-- Clean, minimal charts; no alarming reds except where clinically meaningful (blood flag, severe flare)
+- Clean, minimal charts; color carries meaning only through the sage/yellow/orange system above
 - Tone: calm, professional, friendly — suitable for teens and adults
