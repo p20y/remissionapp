@@ -36,22 +36,21 @@ Each phase is shippable and usable on its own.
   - **Food triggers:** users self-identify trigger foods (dairy, gluten, spicy, fried/fatty, caffeine, alcohol, raw veggies, nuts/seeds, custom); later referenced (not diagnosed) at meal-logging time
 - Home Dashboard — today's status, pain, bathroom visits, mood, energy, sleep, water, medication status, upcoming appointments, streak, quick actions, an **AI summary for your doctor** preview, and the **"I'm Having a Flare"** button
 - **AI Doctor Summary** — patient-controlled multi-select checklist (stool/bathroom, blood, pain & flares, food & diet, sleep, mood, medication adherence) that scopes exactly what's included before an AI-organized summary is generated and shared or exported
-- Flare Mode quick-log (essential questions only, minimal effort), across two fast screens:
-  - Pain level + an **illustrated, tap-to-select digestive-tract body map** (stomach, small intestine, colon, anatomy-chart style with callout labels) with pain-type descriptors (stabbing, cramping, burning, dull ache, sharp, throbbing)
-  - A **Bristol stool chart** selector — all 7 types, larger icons with plain-language labels (Hard, Lumpy, Cracked, Smooth, Soft, Mushy, Liquid), color-coded sage/yellow/orange (typical / maybe a flare / flag for doctor) — plus blood, urgency, fever
-- Daily Check-in, split into two quick steps so nothing feels crammed:
-  - **Step 1:** pain and fatigue on **0–10 sliders**, nausea (yes/no), appetite, water intake, optional weight
-  - **Step 2:** remaining physical symptoms (bloating, joint pain, gas, mouth sores, headache, skin), plus — **only rendered for teen accounts (ages 11–18)** — classes missed, friends & social, family stress
-- Bathroom Tracker — one-tap logging, Bristol scale, weekly/monthly trend graphs
-- Food & Hydration Journal (minimal, Phase 1 slice) — meal logging surfaces a gentle, non-alarmist heads-up when a logged ingredient matches a self-identified trigger
-- Medication Manager — pills, liquid, biologics, infusions, injectables; one-tap **"Mark as taken"** and an editable **reminder time** per dose; an optional **post-dose quick-log** of small tappable boxes tuned to medication type (Sore / Swelling for injectables, Nausea / Stomach pain for oral) with a free-text "Other"
+- **Daily Check-in — one comprehensive flow, five quick steps.** Flare Mode is no longer a separate design: the Home dashboard's "I'm Having a Flare" button opens this same flow, flagged as a flare, so pain/stool detail only has to be built and maintained once:
+  1. **Pain** — pain and fatigue on **0–10 sliders**, plus an **illustrated, tap-to-select digestive-tract body map** (stomach, small intestine, colon, anatomy-chart style with callout labels) and pain-type descriptors (stabbing, cramping, burning, dull ache, sharp, throbbing)
+  2. **Bathroom & stool** — a **Bristol stool chart** selector with organic, hand-illustrated icons (dark brown → pale tan across the 7 types) and plain-language labels (Hard lumps, Lumpy, Cracked, Smooth, Soft blobs, Mushy, Liquid), color-coded sage/yellow/orange (typical / maybe a flare / flag for doctor); frequency and urgency as word-scales (normal→severe); blood present as a toggle
+  3. **Other symptoms** — fever, nausea, vomiting, and medication-taken-today as toggle switches; appetite; remaining symptom chips (bloating, joint pain, gas, mouth sores, headache, skin)
+  4. **School & home life** — **only rendered for teen accounts (ages 11–18)**: attended school, missed classes, homework impact, school stress, family relationships, friends & social, extracurriculars, sleep last night
+  5. **Wrap-up** — water intake, then an "Optional" card (weight, food eaten recently, notes) and Save, closing with a plain-language disclaimer
+- Bathroom Tracker — a separate trends/history view (weekly chart, recent entries); logging itself now happens inside Daily Check-in
+- Food & Hydration Journal (minimal, Phase 1 slice) — meal logging surfaces a gentle, non-alarmist heads-up when a logged ingredient matches a self-identified trigger; distinct from the quick "food eaten recently" free-text note inside Daily Check-in's wrap-up step
+- Medication Manager — pills, liquid, biologics, infusions, injectables; one-tap **"Mark as taken"** and an editable **reminder time** per dose; an optional **post-dose quick-log**, type-aware: injectables get a full detail form (medication name, injection-site grid, pain-at-site slider, reaction chips — redness/swelling/bruising/itching/warmth/bleeding/lump — duration, and photo); oral medications get a lighter version (nausea, stomach pain, free-text "other")
 - Calendar (good day / maybe-a-flare / flare color-coding)
 - Dark mode + large text (accessibility from day 1)
 
 ### Phase 2 — Treatment depth & family use
 - Smart Treatment Reminders (infusion prep/hydration; injection numbing cream, ice pack, fridge removal, site rotation, needle disposal)
-- Medication Response Tracker (long-term trends built on top of the Phase 1 post-dose quick-log boxes)
-- Injection Site Tracker (location, reactions, photos)
+- Medication Response Tracker (long-term trends built on top of the Phase 1 post-dose quick-log, which already captures location, reactions, and photos for injectables)
 - Food & Hydration Journal — full version (portions, photos, meal-time patterns) building on the Phase 1 trigger-alert slice
 - Mood & Mental Wellness tracker (mood + influences, trend comparisons)
 - Sleep Tracker (bedtime, wake, quality, awakenings, hours)
