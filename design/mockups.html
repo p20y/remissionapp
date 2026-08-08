@@ -1,0 +1,925 @@
+<title>Remission — App Mockups</title>
+<style>
+  :root{
+    --bg:#F2F6F4; --ink:#24313B; --sub:#5E7078; --card:#FFFFFF; --line:#DCE6E2;
+    --blue:#56706E; --green:#7FA99B;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#131C22; --ink:#E6EEF1; --sub:#93A6AE; --card:#1C2830; --line:#2C3B44; }
+  }
+  :root[data-theme="dark"]{ --bg:#131C22; --ink:#E6EEF1; --sub:#93A6AE; --card:#1C2830; --line:#2C3B44; }
+  :root[data-theme="light"]{ --bg:#F2F6F4; --ink:#24313B; --sub:#5E7078; --card:#FFFFFF; --line:#DCE6E2; }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg); color:var(--ink);
+    font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
+    margin:0; padding:48px 24px 80px; line-height:1.5;}
+  .wrap{max-width:1180px; margin:0 auto}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); font-weight:600}
+  h1{font-size:clamp(28px,4vw,40px); font-weight:600; margin:6px 0 10px; text-wrap:balance}
+  .lede{color:var(--sub); max-width:66ch; margin:0 0 6px; font-size:15.5px}
+  .changelog{max-width:66ch; margin:14px 0 8px; padding:14px 16px; background:var(--card); border:1px solid var(--line); border-radius:14px; font-size:12.5px; color:var(--sub)}
+  .changelog b{color:var(--ink)}
+  .changelog li{margin:3px 0}
+  .pal{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 8px}
+  .sw{display:flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--line);
+    border-radius:999px; padding:6px 14px 6px 6px; font-size:12px; color:var(--sub)}
+  .sw i{width:22px; height:22px; border-radius:50%; display:inline-block}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:40px 28px; margin-top:36px}
+  .cell{display:flex; flex-direction:column; align-items:center}
+  .cap{max-width:320px; margin-top:16px}
+  .cap h3{font-size:15px; margin:0 0 4px; font-weight:600}
+  .cap h3 span{color:var(--blue); font-weight:600; font-size:11px; letter-spacing:.12em; text-transform:uppercase; display:block; margin-bottom:2px}
+  .cap p{font-size:13px; color:var(--sub); margin:0}
+  .cap p.new::before{content:"NEW · "; color:#A85D60; font-weight:700}
+
+  /* ---------- phone frame ---------- */
+  .ph{width:300px; height:726px; border-radius:44px; padding:10px; background:#0E1418;
+    box-shadow:0 24px 48px rgba(15,30,40,.18), 0 2px 6px rgba(15,30,40,.12); flex:none}
+  .scr{position:relative; width:100%; height:100%; border-radius:35px; overflow:hidden;
+    display:flex; flex-direction:column;
+    --a-bg:#F7FAF9; --a-card:#FFFFFF; --a-ink:#263640; --a-sub:#6B7E8A; --a-line:#E3EAE7;
+    --a-blue:#56706E; --a-blue-soft:#E3EFEE; --a-green:#7FA99B; --a-green-soft:#E7F1EC;
+    --a-coral:#A85D60; --a-coral-soft:#F3E4E4; --a-amber:#96762E; --a-amber-soft:#F6EBD3;
+    background:var(--a-bg); color:var(--a-ink);
+    font-size:15px; line-height:1.28}
+  .ph.dark .scr{ --a-bg:#17211F; --a-card:#212F2D; --a-ink:#E8EFED; --a-sub:#93A8A4; --a-line:#2E3E3B;
+    --a-blue:#8FB0AE; --a-blue-soft:#2A3D3C; --a-green:#9BC4B6; --a-green-soft:#253A32;
+    --a-coral:#C97B7E; --a-coral-soft:#3A2426; --a-amber:#D3B36A; --a-amber-soft:#3A331F}
+  .notch{position:absolute; top:8px; left:50%; transform:translateX(-50%); width:86px; height:22px;
+    background:#0E1418; border-radius:12px; z-index:5}
+  .sbar{display:flex; justify-content:space-between; padding:12px 22px 4px; font-size:11px; font-weight:600; color:var(--a-sub)}
+  .body{flex:1; overflow:hidden; padding:6px 16px 12px; display:flex; flex-direction:column; gap:6px}
+  .tabs{display:flex; border-top:1px solid var(--a-line); background:var(--a-card); padding:9px 6px 14px}
+  .tab{flex:1; text-align:center; font-size:10px; color:var(--a-sub); font-weight:600}
+  .tab i{display:block; width:19px; height:19px; margin:0 auto 3px; border-radius:6px; background:var(--a-line)}
+  .tab.on{color:var(--a-blue)}
+  .tab.on i{background:var(--a-blue-soft); outline:1.5px solid var(--a-blue)}
+
+  /* ---------- shared app components ---------- */
+  .h-row{display:flex; justify-content:space-between; align-items:baseline}
+  .h1a{font-size:22px; font-weight:700}
+  .sub{color:var(--a-sub); font-size:13.5px}
+  .lbl{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--a-sub); font-weight:700}
+  .badge{font-size:9px; background:var(--a-blue-soft); color:var(--a-blue); padding:2px 7px; border-radius:99px; font-weight:700; display:inline-block}
+  .card{background:var(--a-card); border:1px solid var(--a-line); border-radius:16px; padding:9px 12px}
+  .chip{display:inline-block; padding:6px 11px; border-radius:999px; border:1px solid var(--a-line);
+    background:var(--a-card); font-size:12.5px; font-weight:600; color:var(--a-sub)}
+  .chip.on{background:var(--a-blue-soft); border-color:var(--a-blue); color:var(--a-blue)}
+  .chip.g{background:var(--a-green-soft); border-color:transparent; color:var(--a-green)}
+  .chip.am{background:var(--a-amber-soft); border-color:transparent; color:var(--a-amber)}
+  .chips{display:flex; flex-wrap:wrap; gap:4px}
+  .btn{display:block; text-align:center; padding:12px; border-radius:14px; font-weight:700; font-size:15px;
+    background:var(--a-blue); color:#fff}
+  .btn.sage{background:var(--a-green)}
+  .btn.coral{background:var(--a-coral); font-size:16.5px; padding:16px; border-radius:18px;
+    box-shadow:0 8px 18px rgba(168,93,96,.35)}
+  .btn.ghost{background:var(--a-card); color:var(--a-blue); border:1.5px solid var(--a-blue); box-shadow:none; padding:9px; font-size:12.5px}
+  .row{display:flex; gap:8px}
+  .grow{flex:1}
+  .stat{flex:1; background:var(--a-card); border:1px solid var(--a-line); border-radius:13px; padding:7px 9px}
+  .stat b{display:block; font-size:17.5px}
+  .stat span{font-size:11px; color:var(--a-sub)}
+  .bar{height:7px; border-radius:99px; background:var(--a-line); overflow:hidden}
+  .bar i{display:block; height:100%; border-radius:99px; background:var(--a-blue)}
+  .seg{display:flex; gap:3px}
+  .seg b{flex:1; text-align:center; padding:6px 0; border-radius:8px; background:var(--a-card);
+    border:1px solid var(--a-line); font-size:11px; color:var(--a-sub); font-weight:600}
+  .seg b.on{background:var(--a-blue); border-color:var(--a-blue); color:#fff}
+  .pill{font-size:12.5px; font-weight:700; padding:5px 11px; border-radius:99px}
+  .pill.yes{background:var(--a-coral-soft); color:var(--a-coral)}
+  .pill.no{background:var(--a-green-soft); color:var(--a-green)}
+  .pill.b{background:var(--a-blue-soft); color:var(--a-blue)}
+  .dot{width:7px; height:7px; border-radius:50%; display:inline-block}
+  .foot-note{font-size:9.5px; color:var(--a-sub); text-align:center; padding:2px 8px 0; font-style:italic}
+  .stepper{display:flex; align-items:center; gap:12px}
+  .stepper button{width:26px; height:26px; border-radius:50%; border:1.5px solid var(--a-line); background:var(--a-card); color:var(--a-blue); font-size:14px; font-weight:700; line-height:1}
+  .stepper b{font-size:18px; min-width:18px; text-align:center}
+  .field{display:flex; justify-content:space-between; align-items:center; background:var(--a-card); border:1px solid var(--a-line); border-radius:12px; padding:8px 12px; font-size:12.5px; font-weight:600}
+  .field .edit{color:var(--a-blue); font-size:11px; font-weight:700}
+
+  /* ---------- toggle switch + rows ---------- */
+  .switch{width:33px; height:20px; border-radius:99px; background:var(--a-line); position:relative; flex:none}
+  .switch.on{background:var(--a-green)}
+  .switch.on.warn{background:var(--a-amber)}
+  .switch.on.danger{background:var(--a-coral)}
+  .switch i{position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .switch.on i{left:15px}
+  .swrow{display:flex; justify-content:space-between; align-items:center; padding:7px 1px; border-bottom:1px solid var(--a-line); font-size:13px; font-weight:600}
+  .swrow:last-child{border-bottom:none}
+
+  /* ---------- text inputs ---------- */
+  .textin{background:var(--a-bg); border:1px solid var(--a-line); border-radius:11px; padding:9px 11px; font-size:12.5px; color:var(--a-sub)}
+  .textarea{min-height:38px}
+  .upload{display:flex; align-items:center; gap:6px; background:var(--a-card); border:1.5px dashed var(--a-line); border-radius:11px; padding:8px 11px; font-size:12px; color:var(--a-sub); font-weight:600; width:fit-content}
+
+  /* ---------- injection location grid ---------- */
+  .locgrid{display:grid; grid-template-columns:1fr 1fr; gap:5px}
+  .locbtn{background:var(--a-card); border:1px solid var(--a-line); border-radius:9px; padding:8px 5px; text-align:center; font-size:11px; font-weight:600; color:var(--a-sub)}
+  .locbtn.on{background:var(--a-green); border-color:var(--a-green); color:#fff}
+  .locbtn.span2{grid-column:1 / -1}
+
+  /* ---------- body map (full figure) ---------- */
+  .bodymap-wrap{display:flex; flex-direction:column; align-items:center; gap:2px}
+  .organ-lbl{font-size:8px; fill:#33475B; font-weight:700}
+  .callout{stroke:#4A5B68; stroke-width:1; stroke-dasharray:2.5 2}
+  .zonesq{fill:none; stroke:#9FB3BC; stroke-width:1.6; stroke-dasharray:2.5 2}
+
+  /* ---------- bigger stool grid with organic icons ---------- */
+  .stool-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:6px}
+  .stool-card{text-align:center}
+  .stool-ic{width:100%; aspect-ratio:1; border-radius:12px; background:var(--a-card); border:2px solid var(--a-line);
+    display:flex; align-items:center; justify-content:center; padding:5px}
+  .stool-ic.sel-g{border-color:var(--a-green); background:var(--a-green-soft)}
+  .stool-ic.sel-am{border-color:var(--a-amber); background:var(--a-amber-soft)}
+  .stool-ic.sel-r{border-color:var(--a-coral); background:var(--a-coral-soft)}
+  .stool-num{font-size:10.5px; color:var(--a-ink); font-weight:800; margin-top:3px; display:block}
+  .stool-lbl{font-size:9px; color:var(--a-sub); display:block}
+
+  /* ---------- 0-10 slider ---------- */
+  .slider-wrap{margin:1px 0 2px}
+  .slider-track{position:relative; height:7px; border-radius:99px; background:var(--a-line); margin:0 9px}
+  .slider-fill{position:absolute; left:0; top:0; height:100%; border-radius:99px; background:var(--a-green)}
+  .slider-thumb{position:absolute; top:50%; width:17px; height:17px; border-radius:50%; background:var(--a-green);
+    border:3px solid var(--a-card); box-shadow:0 1px 4px rgba(15,30,40,.3); transform:translate(-50%,-50%)}
+
+  /* ---------- med response "little boxes" ---------- */
+  .boxgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:6px}
+  .box{border:1.5px solid var(--a-line); border-radius:10px; padding:9px 4px; text-align:center;
+    font-size:11px; font-weight:700; color:var(--a-sub); background:var(--a-card)}
+  .box.on{border-color:var(--a-amber); background:var(--a-amber-soft); color:var(--a-amber)}
+
+  /* ---------- alert ---------- */
+  .alert{display:flex; gap:7px; align-items:flex-start}
+  .alert .mk{width:17px; height:17px; border-radius:50%; background:var(--a-amber); color:#fff; font-size:11px;
+    font-weight:800; display:flex; align-items:center; justify-content:center; flex:none; margin-top:1px}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Remission · IBD companion app · Phase 1 mockups · v9</div>
+  <h1>The body map, rebuilt from your reference — and a header bug fixed</h1>
+  <p class="lede">Seventeen screens. The body map is redrawn end to end around your new reference image, with the coiled intestine as the clear centerpiece. Daily Check-in's step titles no longer risk wrapping to two lines on a real device, and the Pain screen's two chip rows are now one.</p>
+  <div class="changelog">
+    <b>What's new in this pass:</b>
+    <ul style="margin:8px 0 0; padding-left:18px">
+      <li><b>Breathing exercises</b> footer now reads "A moment to pause, reset, and breathe" instead of the more clinical disclaimer phrasing</li>
+      <li><b>Fixed title wrapping</b> on every Daily Check-in step (1 of 5 through 5 of 5) — the screen title now sits on its own full-width line below the back/step-counter row, instead of being squeezed between them where it could wrap to two lines, as you saw happen with "School &amp; home life"</li>
+      <li><b>Body map rebuilt around your reference</b>: arms now hang close to the body instead of angled out, small knee accents on the legs, dashed callout lines, and — the main change — a large, densely coiled rust-orange intestine mass as the dominant feature, with the smaller organs (stomach, liver, gallbladder, spleen) sitting above it rather than mixed in</li>
+      <li><b>Pain screen's chips combined</b> — "What kind of pain?" and "Other symptoms with this pain?" are now one "What's it like?" row</li>
+    </ul>
+  </div>
+  <div class="pal">
+    <span class="sw"><i style="background:#56706E"></i>Deep teal · primary</span>
+    <span class="sw"><i style="background:#7FA99B"></i>Sage · good</span>
+    <span class="sw"><i style="background:#AED4D6"></i>Ice blue · soft accent</span>
+    <span class="sw"><i style="background:#96762E"></i>Gold-brown · maybe a flare</span>
+    <span class="sw"><i style="background:#A85D60"></i>Brick red · immediate action</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- 01 · ONBOARDING — ABOUT YOU -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="lbl" style="margin-top:8px">Step 1 of 5</div>
+          <div class="bar"><i style="width:20%"></i></div>
+          <div class="h1a" style="margin-top:6px">A bit about you</div>
+          <div class="sub">This helps us personalize your dashboard and check-ins.</div>
+
+          <div class="lbl" style="margin-top:6px">Age</div>
+          <div class="stepper"><button>−</button><b>15</b><button>+</button></div>
+
+          <div class="lbl" style="margin-top:2px">Gender</div>
+          <div class="chips">
+            <span class="chip on">Female</span><span class="chip">Male</span>
+            <span class="chip">Non-binary</span><span class="chip">Prefer not to say</span>
+          </div>
+
+          <div class="card" style="background:var(--a-blue-soft); border-color:transparent">
+            <div class="h-row"><span class="lbl" style="color:var(--a-blue)">Track menstrual cycle</span><span class="pill b">On</span></div>
+            <div class="sub" style="margin-top:2px">Optional — compare hormonal changes with your symptoms.</div>
+          </div>
+
+          <div class="card" style="background:var(--a-blue-soft); border-color:transparent">
+            <div class="h-row"><span class="lbl" style="color:var(--a-blue)">Since you're a teen</span><span class="pill b">On</span></div>
+            <div class="sub" style="margin-top:2px">We'll add a school &amp; home life step to your daily check-in.</div>
+          </div>
+
+          <div class="grow"></div>
+          <div class="btn">Continue</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>01 · Onboarding</span>About you</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 02 · ONBOARDING — DIAGNOSIS & TRIGGERS -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="lbl" style="margin-top:8px">Step 2 of 5</div>
+          <div class="bar"><i style="width:40%"></i></div>
+          <div class="h1a" style="margin-top:6px">Your diagnosis &amp; care</div>
+          <div class="lbl" style="margin-top:4px">Diagnosis</div>
+          <div class="chips"><span class="chip on">Crohn's disease</span><span class="chip">Ulcerative colitis</span><span class="chip">IBD-U</span></div>
+          <div class="lbl" style="margin-top:4px">Treatment type</div>
+          <div class="chips"><span class="chip">Pills</span><span class="chip on">Injectable</span><span class="chip">Infusion</span><span class="chip">Liquid</span></div>
+          <div class="lbl" style="margin-top:4px">Food triggers <span style="text-transform:none; font-weight:500">(optional)</span></div>
+          <div class="chips">
+            <span class="chip on">Dairy</span><span class="chip">Gluten</span><span class="chip on">Spicy food</span>
+            <span class="chip">Fried / fatty</span><span class="chip">Caffeine</span><span class="chip">＋ Add your own</span>
+          </div>
+          <div class="grow"></div>
+          <div class="btn">Continue</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>02 · Onboarding</span>Diagnosis, treatment &amp; food triggers</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 03 · HOME -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px">
+            <div><div class="h1a">Good morning, Anisha</div><div class="sub">Tuesday, Aug 4 · <b style="color:var(--a-green)">12-day streak</b></div></div>
+          </div>
+          <div class="card" style="background:var(--a-green-soft); border-color:transparent">
+            <div class="lbl" style="color:var(--a-green)">Today looks steady</div>
+            <div class="sub" style="margin-top:2px">Pain and energy are near your 30-day average.</div>
+          </div>
+          <div class="row">
+            <div class="stat"><span>Pain</span><b>2 / 10</b></div>
+            <div class="stat"><span>Bathroom</span><b>3 visits</b></div>
+            <div class="stat"><span>Mood</span><b>Calm</b></div>
+          </div>
+          <div class="sub">Sleep 7.5h · Water 5/8 · Energy Good</div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:13px">Humira · 40 mg</b><span class="pill b">Fri</span></div>
+            <div class="h-row" style="margin-top:4px"><b style="font-size:13px">Dr. Patel · follow-up</b><span class="pill b">Aug 12</span></div>
+          </div>
+          <div class="row">
+            <div class="card grow" style="background:var(--a-blue-soft); border-color:transparent; padding:8px 6px; text-align:center">
+              <div class="sub" style="color:var(--a-blue); font-weight:700; font-size:11.5px">AI summary ›</div>
+            </div>
+            <div class="card grow" style="background:var(--a-green-soft); border-color:transparent; padding:8px 6px; text-align:center">
+              <div class="sub" style="color:var(--a-green); font-weight:700; font-size:11.5px">Breathing ›</div>
+            </div>
+            <div class="card grow" style="background:var(--a-amber-soft); border-color:transparent; padding:8px 6px; text-align:center">
+              <div class="sub" style="color:var(--a-amber); font-weight:700; font-size:11.5px">Recipes ›</div>
+            </div>
+          </div>
+          <div class="grow"></div>
+          <div class="btn coral">I'm Having a Flare</div>
+        </div>
+        <div class="tabs">
+          <div class="tab on"><i></i>Home</div><div class="tab"><i></i>Track</div><div class="tab"><i></i>Calendar</div><div class="tab"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>03 · Home dashboard</span>Today at a glance</h3>
+      <p class="new">Tab bar drops to four tabs (Insights folded into Calendar, see screen 17). Otherwise unchanged: three quick-links, flare button, larger type.</p></div>
+    </div>
+
+    <!-- 04 · AI SUMMARY FOR DOCTOR -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><span class="sub">‹ Back</span><span class="sub">Preview</span></div>
+          <div class="h1a">Summary for Dr. Patel</div>
+          <div class="chips"><span class="chip on">Last 30 days</span><span class="chip">Since last visit</span><span class="chip">Custom</span></div>
+          <div class="lbl" style="margin-top:4px">Include in this summary</div>
+          <div class="chips">
+            <span class="chip on">Bathroom &amp; stool</span><span class="chip on">Blood</span><span class="chip on">Pain &amp; flares</span>
+            <span class="chip">Food &amp; diet</span><span class="chip">Sleep</span><span class="chip on">Medication adherence</span>
+          </div>
+          <div class="card">
+            <div class="lbl">Preview</div>
+            <div class="sub" style="margin-top:3px">Between Jul 5–Aug 4, Anisha logged 2 flare episodes (peak pain 7–8/10). Blood was noted in 3 of 24 bathroom entries. Medication adherence was 94%.</div>
+          </div>
+          <div class="foot-note">Organized from personal logs. Review before sharing — not medical advice.</div>
+          <div class="grow"></div>
+          <div class="btn">Share with Dr. Patel</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>04 · AI doctor summary</span>Patient chooses what's shared</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 05 · DAILY CHECK-IN 1/5 — PAIN & BODY MAP -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body" style="gap:5px">
+          <div class="h-row" style="margin-top:6px"><span class="sub">Daily check-in</span><span class="sub">1 of 5</span></div>
+          <div class="h1a">Pain</div>
+
+          <div class="h-row"><span class="lbl">Pain level</span><b style="font-size:13px">5/10</b></div>
+          <div class="slider-track"><div class="slider-fill" style="width:50%"></div><div class="slider-thumb" style="left:50%"></div></div>
+
+          <div class="h-row" style="margin-top:2px"><span class="lbl">Fatigue</span><b style="font-size:13px">4/10</b></div>
+          <div class="slider-track"><div class="slider-fill" style="width:40%"></div><div class="slider-thumb" style="left:40%"></div></div>
+
+          <div class="h-row" style="margin-top:2px">
+            <span class="lbl">Where does it hurt?</span>
+            <span class="chip on" style="font-size:10px; padding:3px 8px">✎ Draw mode</span>
+          </div>
+          <div class="bodymap-wrap">
+            <svg viewBox="0 0 260 254" style="width:100%; max-width:224px">
+              <ellipse cx="130" cy="18" rx="13" ry="14" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.6"/>
+              <ellipse cx="126" cy="12" rx="6.5" ry="4.4" fill="#F0B8C4" opacity=".5"/>
+              <path d="M124 31 L136 31 L134.5 43 L125.5 43 Z" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.4"/>
+
+              <path d="M107 46 Q99 68 101 106 Q102 146 108 190 L152 190 Q158 146 159 106 Q161 68 153 46 Q142 40 130 40 Q118 40 107 46 Z"
+                fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.6"/>
+              <path d="M104 50 Q96 56 94 90 Q93 120 96 150 Q99 153 103 151 Q100 120 101 90 Q102 62 112 54 Z" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.4"/>
+              <path d="M156 50 Q164 56 166 90 Q167 120 164 150 Q161 153 157 151 Q160 120 159 90 Q158 62 148 54 Z" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.4"/>
+              <path d="M114 190 Q111 218 113 248 Q116 252 120 250 Q119 222 121 192 Z" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.4"/>
+              <circle cx="117" cy="208" r="5.5" fill="#F0B8C4" opacity=".4"/>
+              <ellipse cx="115" cy="250" rx="6.5" ry="3.2" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.2"/>
+              <path d="M146 190 Q149 218 147 248 Q144 252 140 250 Q141 222 139 192 Z" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.4"/>
+              <circle cx="143" cy="208" r="5.5" fill="#F0B8C4" opacity=".4"/>
+              <ellipse cx="145" cy="250" rx="6.5" ry="3.2" fill="#F6D3B5" stroke="#E3AD82" stroke-width="1.2"/>
+
+              <ellipse cx="116" cy="72" rx="12" ry="17.5" fill="#E8899B" opacity=".85"/>
+              <path d="M116 57 Q113 72 116 87" stroke="#C1607A" stroke-width="1" fill="none" opacity=".6"/>
+              <ellipse cx="144" cy="72" rx="12" ry="17.5" fill="#E8899B" opacity=".85"/>
+              <path d="M144 57 Q147 72 144 87" stroke="#C1607A" stroke-width="1" fill="none" opacity=".6"/>
+              <path d="M130 86 C125.5 79 116 79.9 116 87 C116 94.5 130 105 130 105 C130 105 144 94.5 144 87 C144 79.9 134.5 79 130 86 Z" fill="#C1544B"/>
+
+              <path d="M83 98 Q84 92 92 92 Q104 92 106 98 Q107 104 100 105 Q90 106 84 103 Q83 101 83 98 Z" fill="#D9A45C"/>
+              <ellipse cx="90" cy="109" rx="6" ry="3" fill="#E8D9A0" opacity=".7"/>
+              <path d="M112 94 Q126 90 132 100 Q134 110 122 112 Q110 110 108 102 Q108 96 112 94 Z" fill="#6B3A2E"/>
+              <circle cx="133" cy="104" r="3.2" fill="#5FA36B"/>
+
+              <path d="M100 116 Q96 154 100 182 Q103 194 130 196 Q157 194 160 182 Q164 154 160 116 Q145 107 130 109 Q115 107 100 116 Z"
+                fill="none" stroke="#D9793A" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M104 120 Q100 152 104 178 Q107 189 130 191 Q153 189 156 178 Q160 152 156 120 Q144 112 130 114 Q116 112 104 120 Z"
+                fill="#F0B8B0"/>
+              <g stroke="#D98A9A" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".6">
+                <path d="M108 126 Q120 121 132 126 Q144 131 152 126"/>
+                <path d="M106 136 Q118 143 130 136 Q142 129 154 136"/>
+                <path d="M106 146 Q120 139 132 146 Q144 153 154 146"/>
+                <path d="M108 156 Q120 163 132 156 Q142 149 152 156"/>
+                <path d="M110 166 Q122 161 132 166 Q142 171 150 166"/>
+                <path d="M114 176 Q124 173 132 176 Q140 179 146 176"/>
+              </g>
+              <ellipse cx="130" cy="193" rx="7" ry="6" fill="#C1544B" opacity=".85"/>
+
+              <path d="M100 116 Q96 154 100 182 Q103 194 130 196 Q157 194 160 182 Q164 154 160 116 Q145 107 130 109 Q115 107 100 116 Z"
+                fill="var(--a-green)" fill-opacity=".14" stroke="var(--a-green)" stroke-width="2.5" stroke-linejoin="round"/>
+
+              <line class="callout" x1="83" y1="98" x2="188" y2="96"/><circle cx="83" cy="98" r="1.8" fill="#33475B"/>
+              <text class="organ-lbl" x="191" y="99">Stomach</text>
+              <line class="callout" x1="128" y1="145" x2="188" y2="150"/><circle cx="128" cy="145" r="1.8" fill="#33475B"/>
+              <text class="organ-lbl" x="191" y="153">Small intestine</text>
+              <line class="callout" x1="130" y1="193" x2="188" y2="188"/><circle cx="130" cy="193" r="1.8" fill="#33475B"/>
+              <text class="organ-lbl" x="191" y="191">Colon</text>
+            </svg>
+            <span class="sub">Draw or tap over the belly to mark where it hurts</span>
+            <div class="row" style="gap:6px">
+              <span class="sub"><b style="color:var(--a-green)">Shaded:</b> intestines / colon</span>
+              <span class="sub" style="color:var(--a-blue); font-weight:700">Clear</span>
+            </div>
+          </div>
+
+          <div class="lbl">What's it like?</div>
+          <div class="chips">
+            <span class="chip">Stabbing</span><span class="chip on">Cramping</span><span class="chip">Burning</span><span class="chip">Dull ache</span>
+            <span class="chip on">Bloating</span><span class="chip">Gas</span><span class="chip">Joint pain</span><span class="chip">Headache</span>
+          </div>
+          <div class="grow"></div>
+          <div class="btn sage">Next ›</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>05 · Daily check-in — 1 of 5</span>Pain &amp; body map, matched to your reference</h3>
+      <p class="new">Corrected the intestine structure to match exactly: a thick orange outline traces the colon around the perimeter, with a pink coiled small intestine filling the inside and a small red cecum marker at the bottom — not a solid orange fill. Liver moved to sit centered above it (not off to the side), with the tan pancreas and green gallbladder alongside. Leg accents repositioned to upper-thigh height.</p></div>
+    </div>
+
+    <!-- 06 · DAILY CHECK-IN 2/5 — BATHROOM & STOOL -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><span class="sub">‹ Back</span><span class="sub">2 of 5</span></div>
+          <div class="h1a">Bathroom &amp; stool</div>
+
+          <div class="lbl">What did it look like?</div>
+          <div class="stool-grid">
+            <div class="stool-card"><div class="stool-ic"><svg viewBox="0 0 36 36" width="28" height="28"><circle cx="10" cy="12" r="5" fill="#8B5E3C"/><circle cx="20" cy="8" r="6" fill="#8B5E3C"/><circle cx="27" cy="15" r="5.5" fill="#8B5E3C"/><circle cx="9" cy="23" r="5" fill="#8B5E3C"/><circle cx="19" cy="25" r="5.5" fill="#8B5E3C"/></svg></div><span class="stool-num">1</span><span class="stool-lbl">Hard lumps</span></div>
+            <div class="stool-card"><div class="stool-ic"><svg viewBox="0 0 36 24" width="28" height="19"><ellipse cx="18" cy="13" rx="16" ry="9" fill="#A9784C"/><circle cx="10" cy="9" r="4.5" fill="#8B5E3C"/><circle cx="21" cy="7" r="4" fill="#8B5E3C"/><circle cx="26" cy="15" r="4.5" fill="#8B5E3C"/><circle cx="13" cy="17" r="4" fill="#8B5E3C"/></svg></div><span class="stool-num">2</span><span class="stool-lbl">Lumpy</span></div>
+            <div class="stool-card"><div class="stool-ic"><svg viewBox="0 0 36 16" width="28" height="12"><rect x="2" y="2" width="32" height="12" rx="6" fill="#C1935F"/><path d="M11 3 Q13 8 10 13" stroke="#8B5E3C" stroke-width="1.4" fill="none" opacity=".7"/><path d="M20 3 Q22 8 19 13" stroke="#8B5E3C" stroke-width="1.4" fill="none" opacity=".7"/><path d="M28 3 Q30 8 27 13" stroke="#8B5E3C" stroke-width="1.4" fill="none" opacity=".7"/></svg></div><span class="stool-num">3</span><span class="stool-lbl">Cracked</span></div>
+            <div class="stool-card"><div class="stool-ic sel-g"><svg viewBox="0 0 36 14" width="28" height="11"><rect x="2" y="2" width="32" height="10" rx="5" fill="#D4A876"/><ellipse cx="10" cy="7" rx="5" ry="3.4" fill="#E8C9A0" opacity=".8"/></svg></div><span class="stool-num">4</span><span class="stool-lbl">Smooth</span></div>
+            <div class="stool-card"><div class="stool-ic"><svg viewBox="0 0 36 20" width="28" height="16"><ellipse cx="12" cy="12" rx="8" ry="7" fill="#E3C39A"/><ellipse cx="24" cy="10" rx="7" ry="6" fill="#E3C39A"/></svg></div><span class="stool-num">5</span><span class="stool-lbl">Soft blobs</span></div>
+            <div class="stool-card"><div class="stool-ic"><svg viewBox="0 0 36 20" width="28" height="16"><ellipse cx="8" cy="8" rx="5" ry="4" fill="#EAD3B0"/><ellipse cx="17" cy="6" rx="4.5" ry="3.6" fill="#EAD3B0"/><ellipse cx="25" cy="9" rx="5" ry="4" fill="#EAD3B0"/><ellipse cx="12" cy="14" rx="4.5" ry="3.6" fill="#EAD3B0"/><ellipse cx="22" cy="15" rx="4.5" ry="3.6" fill="#EAD3B0"/></svg></div><span class="stool-num">6</span><span class="stool-lbl">Mushy</span></div>
+            <div class="stool-card"><div class="stool-ic"><svg viewBox="0 0 36 16" width="28" height="12"><path d="M2 8 Q6 3 10 8 T18 8 T26 8 T34 8 L34 13 Q30 16 26 13 T18 13 T10 13 T2 13 Z" fill="#F0E0C4" opacity=".9"/></svg></div><span class="stool-num">7</span><span class="stool-lbl">Liquid</span></div>
+          </div>
+          <div class="chips">
+            <span class="chip g"><span class="dot" style="background:var(--a-green)"></span> Typical</span>
+            <span class="chip am"><span class="dot" style="background:var(--a-amber)"></span> Maybe a flare</span>
+            <span class="chip" style="background:var(--a-coral-soft); border-color:transparent; color:var(--a-coral)"><span class="dot" style="background:var(--a-coral)"></span> Flag for doctor</span>
+          </div>
+
+          <div class="lbl" style="margin-top:2px">Frequency</div>
+          <div class="seg"><b>normal</b><b class="on">increased</b><b>frequent</b><b>severe</b></div>
+
+          <div class="swrow">Blood or mucus present? <div class="switch on danger"><i></i></div></div>
+
+          <div class="lbl">Urgency</div>
+          <div class="seg"><b>none</b><b>mild</b><b class="on">moderate</b><b>severe</b></div>
+
+          <div class="lbl">What's happening?</div>
+          <div class="chips">
+            <span class="chip on">Frequent diarrhea / loose stools</span><span class="chip">Belly cramps &amp; stomach pain</span>
+            <span class="chip">Strong, sudden urge</span><span class="chip">Urge with nothing coming out</span>
+          </div>
+
+          <div class="grow"></div>
+          <div class="btn sage">Next ›</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>06 · Daily check-in — 2 of 5</span>Bathroom &amp; stool</h3>
+      <p class="new">Title moved to its own full-width line below the back/step row, so it can't wrap to two lines on a real device the way "School &amp; home life" did.</p></div>
+    </div>
+
+    <!-- 07 · DAILY CHECK-IN 3/5 — OTHER SYMPTOMS -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><span class="sub">‹ Back</span><span class="sub">3 of 5</span></div>
+          <div class="h1a">Other symptoms</div>
+
+          <div class="card" style="padding:1px 12px">
+            <div class="swrow">Fever? <div class="switch"><i></i></div></div>
+            <div class="swrow">Nausea or throwing up? <div class="switch on warn"><i></i></div></div>
+            <div class="swrow">Medication taken today? <div class="switch on"><i></i></div></div>
+          </div>
+
+          <div class="lbl" style="margin-top:2px">Appetite</div>
+          <div class="seg"><b>Low</b><b class="on">OK</b><b>Good</b></div>
+
+          <div class="lbl">Anything else physical?</div>
+          <div class="chips">
+            <span class="chip on">Bloating</span><span class="chip">Gas</span><span class="chip">Mouth sores</span>
+            <span class="chip">Joint pain or swelling</span><span class="chip">Skin rashes or sores</span>
+            <span class="chip">Red, painful, or irritated eyes</span><span class="chip on">Extreme tiredness, low energy</span>
+            <span class="chip">Losing weight without trying</span><span class="chip">Not wanting to eat</span>
+            <span class="chip">Low fever</span><span class="chip">Bad breath</span><span class="chip on">Other</span>
+          </div>
+          <div class="textin" style="margin-top:4px">Describe it in your own words…</div>
+
+          <div class="grow"></div>
+          <div class="btn sage">Next ›</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>07 · Daily check-in — 3 of 5</span>A much fuller symptom list</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 08 · DAILY CHECK-IN 4/5 — TEEN WELLNESS -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body" style="gap:5px">
+          <div class="h-row" style="margin-top:6px"><span class="sub">‹ Back</span><span class="sub">4 of 5</span></div>
+          <div class="h1a">School &amp; home life</div>
+          <span class="badge" style="align-self:flex-start">Teen Wellness</span>
+
+          <div class="swrow">Attended school today <div class="switch on"><i></i></div></div>
+
+          <div class="lbl" style="margin-top:2px">Missed classes</div>
+          <div class="seg"><b class="on">0</b><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b></div>
+
+          <div class="lbl">Homework impact</div>
+          <div class="seg"><b class="on">None</b><b>Mild</b><b>Moderate</b><b>Severe</b></div>
+
+          <div class="h-row" style="margin-top:2px"><span class="lbl">School stress</span><b style="font-size:13px">2/10</b></div>
+          <div class="slider-track"><div class="slider-fill" style="width:20%"></div><div class="slider-thumb" style="left:20%"></div></div>
+
+          <div class="lbl" style="margin-top:2px">Family relationships</div>
+          <div class="seg"><b>Poor</b><b>Fair</b><b class="on">Good</b><b>Great</b></div>
+
+          <div class="lbl">Friends &amp; social</div>
+          <div class="seg"><b>Poor</b><b>Fair</b><b class="on">Good</b><b>Great</b></div>
+
+          <div class="lbl">Extracurriculars</div>
+          <div class="textin">Done or missed today…</div>
+
+          <div class="h-row" style="margin-top:2px"><span class="lbl">Sleep last night</span><b style="font-size:13px">8h</b></div>
+          <div class="slider-track"><div class="slider-fill" style="width:67%"></div><div class="slider-thumb" style="left:67%"></div></div>
+
+          <div class="grow"></div>
+          <div class="btn sage">Next ›</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>08 · Daily check-in — 4 of 5</span>Teen Wellness</h3>
+      <p class="new">Fixes the two-line title wrap you flagged — "School &amp; home life" now gets its own full-width row instead of squeezing between "‹ Back" and "4 of 5."</p></div>
+    </div>
+
+    <!-- 09 · DAILY CHECK-IN 5/5 — OPTIONAL & SAVE -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><span class="sub">‹ Back</span><span class="sub">5 of 5</span></div>
+          <div class="h1a">Wrap up</div>
+
+          <div class="lbl">Water today</div>
+          <div class="row" style="align-items:center">
+            <div class="stepper"><button>−</button><b>5</b><button>+</button></div>
+            <span class="sub">of 8 glasses</span>
+          </div>
+
+          <div class="card">
+            <div class="lbl">Optional</div>
+            <div class="lbl" style="margin-top:6px; font-weight:600; text-transform:none; letter-spacing:0; color:var(--a-ink); font-size:12px">Weight</div>
+            <div class="textin" style="margin-top:3px">lbs or kg</div>
+            <div class="lbl" style="margin-top:6px; font-weight:600; text-transform:none; letter-spacing:0; color:var(--a-ink); font-size:12px">Food eaten recently</div>
+            <div class="textin" style="margin-top:3px">What did you eat?</div>
+            <div class="lbl" style="margin-top:6px; font-weight:600; text-transform:none; letter-spacing:0; color:var(--a-ink); font-size:12px">Notes</div>
+            <div class="textin textarea" style="margin-top:3px">Anything else…</div>
+          </div>
+
+          <div class="grow"></div>
+          <div class="btn sage">Save Check-in</div>
+          <div class="foot-note">This log is for your personal tracking. Share it with your healthcare team — it's not medical advice.</div>
+        </div>
+        <div class="tabs">
+          <div class="tab"><i></i>Home</div><div class="tab on"><i></i>Track</div><div class="tab"><i></i>Calendar</div><div class="tab"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>09 · Daily check-in — 5 of 5</span>Optional details, then save</h3>
+      <p>Larger type again this round; tab bar now four tabs.</p></div>
+    </div>
+
+    <!-- 10 · BATHROOM TREND -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><div class="h1a">Bathroom</div><span class="pill b">This week</span></div>
+          <div class="btn" style="background:var(--a-green)">＋ Log visit now</div>
+          <div class="card">
+            <div class="lbl">Visits per day</div>
+            <svg viewBox="0 0 240 74" style="width:100%; margin-top:4px">
+              <line x1="0" y1="60" x2="240" y2="60" stroke="var(--a-line)" stroke-width="1"/>
+              <rect x="10"  y="30" width="18" height="30" rx="4" fill="var(--a-blue)" opacity=".45"/>
+              <rect x="42"  y="36" width="18" height="24" rx="4" fill="var(--a-blue)" opacity=".45"/>
+              <rect x="74"  y="24" width="18" height="36" rx="4" fill="var(--a-blue)" opacity=".45"/>
+              <rect x="106" y="12" width="18" height="48" rx="4" fill="var(--a-amber)"/>
+              <rect x="138" y="18" width="18" height="42" rx="4" fill="var(--a-amber)" opacity=".85"/>
+              <rect x="170" y="34" width="18" height="26" rx="4" fill="var(--a-blue)" opacity=".45"/>
+              <rect x="202" y="42" width="18" height="18" rx="4" fill="var(--a-blue)"/>
+              <text x="10" y="71" font-size="8" fill="var(--a-sub)">M</text><text x="42" y="71" font-size="8" fill="var(--a-sub)">T</text>
+              <text x="74" y="71" font-size="8" fill="var(--a-sub)">W</text><text x="106" y="71" font-size="8" fill="var(--a-sub)">T</text>
+              <text x="138" y="71" font-size="8" fill="var(--a-sub)">F</text><text x="170" y="71" font-size="8" fill="var(--a-sub)">S</text>
+              <text x="202" y="71" font-size="8" fill="var(--a-sub)">S</text>
+            </svg>
+            <div class="sub">Thu–Fri were above your usual range.</div>
+          </div>
+          <div class="lbl">Today</div>
+          <div class="card" style="padding:2px 12px">
+            <div class="swrow"><span>7:20 am · Type 6</span><span class="pill" style="background:var(--a-amber-soft); color:var(--a-amber)">Urgent</span></div>
+            <div class="swrow"><span>11:05 am · Type 5</span><span class="pill no">Normal</span></div>
+          </div>
+          <div class="grow"></div>
+        </div>
+        <div class="tabs">
+          <div class="tab"><i></i>Home</div><div class="tab on"><i></i>Track</div><div class="tab"><i></i>Calendar</div><div class="tab"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>10 · Bathroom trends</span>Weekly view</h3>
+      <p>Larger type again this round; tab bar now four tabs.</p></div>
+    </div>
+
+    <!-- 11 · MEAL LOG -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h1a" style="margin-top:6px">Log a meal</div>
+
+          <div class="lbl">Meal type</div>
+          <div class="chips"><span class="chip on">Breakfast</span><span class="chip">Lunch</span><span class="chip">Dinner</span><span class="chip">Snack</span><span class="chip">Drink</span></div>
+
+          <div class="lbl">What did you eat?</div>
+          <div class="textin">Greek yogurt, toast, coffee</div>
+
+          <div class="card alert" style="background:var(--a-amber-soft); border-color:transparent">
+            <span class="mk">!</span>
+            <div><b style="font-size:12px; color:var(--a-amber)">Contains dairy</b>
+            <div class="sub" style="margin-top:1px">You noted dairy as a personal trigger.</div></div>
+          </div>
+
+          <div class="row">
+            <div class="grow">
+              <div class="lbl">Portion</div>
+              <div class="seg"><b>Small</b><b class="on">Medium</b><b>Large</b></div>
+            </div>
+          </div>
+          <div class="lbl">Time</div>
+          <div class="field"><span>9:20 am</span><svg viewBox="0 0 24 24" width="13" height="13"><circle cx="12" cy="12" r="9" fill="none" stroke="var(--a-blue)" stroke-width="1.8"/><path d="M12 7v5l4 2" fill="none" stroke="var(--a-blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+
+          <div class="chips"><span class="chip on"><svg viewBox="0 0 24 24" width="10" height="10" style="vertical-align:-1px; margin-right:2px"><path d="M12 3 Q19 12 19 16 A7 7 0 0 1 5 16 Q5 12 12 3 Z" fill="var(--a-blue)"/></svg>Water</span></div>
+
+          <div class="lbl">Notes <span style="text-transform:none; font-weight:500">(optional)</span></div>
+          <div class="textin textarea">Anything else…</div>
+
+          <div class="grow"></div>
+          <div class="row">
+            <span class="btn ghost grow">Cancel</span>
+            <span class="btn sage grow">Save</span>
+          </div>
+
+          <div class="lbl" style="margin-top:6px">Monday, Jul 27</div>
+          <div class="card" style="padding:8px 12px">
+            <div class="h-row">
+              <span class="sub" style="color:var(--a-ink); font-weight:700; font-size:12.5px">Oatmeal with berries</span>
+              <span class="sub">Breakfast · 8:10 am · Medium</span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>11 · Log a meal</span>Free-text entry, with a log below</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 12 · MEDICATIONS -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><div class="h1a">Medications</div><span class="pill no">94% this month</span></div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:13.5px">Humira · 40 mg injectable</b><span class="pill b">Fri</span></div>
+            <div class="sub" style="margin:3px 0 6px">Every 2 weeks · next site: <b>left thigh</b></div>
+            <div class="h-row">
+              <span class="pill b">Reminder Fri 6:00 pm ✎</span>
+              <span class="btn ghost" style="padding:5px 10px; font-size:11px">Mark as taken</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:13.5px">Mesalamine · 1.2 g pill</b><span class="pill no">2 of 2 taken</span></div>
+            <div class="h-row" style="margin-top:4px"><span class="sub">8:00 am ✓ · 8:00 pm ✓</span><span class="sub" style="color:var(--a-blue); font-weight:700">✎ Edit times</span></div>
+          </div>
+          <div class="grow"></div>
+          <div class="btn">＋ Add medication</div>
+        </div>
+        <div class="tabs">
+          <div class="tab"><i></i>Home</div><div class="tab"><i></i>Track</div><div class="tab"><i></i>Calendar</div><div class="tab on"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>12 · Medication manager</span>Mark as taken, editable reminders</h3>
+      <p>Larger type again this round; tab bar now four tabs.</p></div>
+    </div>
+
+    <!-- 13 · POST-DOSE — INJECTABLE -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body" style="gap:5px">
+          <div class="h-row" style="margin-top:6px"><div class="h1a">After your dose</div><span class="pill no">Humira</span></div>
+
+          <div class="lbl">Medication <span style="text-transform:none; font-weight:500">(optional)</span></div>
+          <div class="textin">e.g. Humira, Stelara, Skyrizi</div>
+
+          <div class="lbl">Injection location</div>
+          <div class="locgrid">
+            <div class="locbtn on">Left thigh</div><div class="locbtn">Right thigh</div>
+            <div class="locbtn">Left abdomen</div><div class="locbtn">Right abdomen</div>
+            <div class="locbtn">Left arm</div><div class="locbtn">Right arm</div>
+            <div class="locbtn span2">Other</div>
+          </div>
+
+          <div class="h-row" style="margin-top:2px"><span class="lbl">Pain at site</span><b style="font-size:13px">0/10</b></div>
+          <div class="slider-track"><div class="slider-fill" style="width:0%"></div><div class="slider-thumb" style="left:0%"></div></div>
+
+          <div class="lbl">Reactions</div>
+          <div class="chips">
+            <span class="chip">Redness</span><span class="chip on">Swelling</span><span class="chip">Bruising</span>
+            <span class="chip">Itching</span><span class="chip">Warmth</span><span class="chip">Bleeding</span><span class="chip">Lump</span><span class="chip on">Other</span>
+          </div>
+          <div class="textin">Describe it in your own words…</div>
+
+          <div class="lbl">Reaction duration</div>
+          <div class="textin">e.g. 2 hours</div>
+
+          <div class="lbl">Photo <span style="text-transform:none; font-weight:500">(optional)</span></div>
+          <div class="upload"><svg viewBox="0 0 24 24" width="13" height="13"><rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="var(--a-sub)" stroke-width="1.6"/><path d="M8 7 L10 4 H14 L16 7" fill="none" stroke="var(--a-sub)" stroke-width="1.6"/><circle cx="12" cy="13.5" r="4" fill="none" stroke="var(--a-sub)" stroke-width="1.6"/></svg>Upload</div>
+
+          <div class="grow"></div>
+          <div class="btn sage">Save</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>13 · Post-dose log — injectable</span>Full detail</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 14 · POST-DOSE — ORAL -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><div class="h1a">After your dose</div><span class="pill no">Mesalamine</span></div>
+          <div class="sub">Optional — takes 20 seconds</div>
+
+          <div class="lbl" style="margin-top:4px">Any of these?</div>
+          <div class="boxgrid">
+            <div class="box on">Nausea</div><div class="box">Stomach pain</div><div class="box">Headache</div>
+            <div class="box">Dizziness</div><div class="box">Fatigue</div><div class="box">Diarrhea</div>
+            <div class="box on" style="grid-column:1 / -1">Other</div>
+          </div>
+          <div class="textin" style="margin-top:6px">Describe it in your own words…</div>
+
+          <div class="lbl" style="margin-top:4px">When did you notice it?</div>
+          <div class="seg"><b class="on">Right away</b><b>1–2 hours</b><b>Later</b></div>
+
+          <div class="lbl">Feeling overall</div>
+          <div class="seg"><b>Worse</b><b class="on">Same</b><b>Better</b></div>
+
+          <div class="grow"></div>
+          <div class="row"><span class="btn ghost grow">Skip</span><span class="btn sage grow">Save</span></div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>14 · Post-dose log — oral</span>More options, more context</h3>
+      <p>Larger type again this round, otherwise unchanged.</p></div>
+    </div>
+
+    <!-- 15 · BREATHING EXERCISES -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h1a" style="margin-top:6px">Breathing exercises</div>
+          <div class="sub">A few minutes can help while symptoms settle.</div>
+
+          <div class="card" style="align-items:center; text-align:center; display:flex; flex-direction:column; gap:4px; padding:16px 12px">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <circle cx="50" cy="50" r="44" fill="var(--a-blue-soft)"/>
+              <circle cx="50" cy="50" r="30" fill="var(--a-blue)" opacity=".85"/>
+            </svg>
+            <b style="font-size:13.5px">Breathe in… 4</b>
+            <span class="sub">Square breathing, round 1 of 4</span>
+          </div>
+
+          <div class="card">
+            <div class="h-row"><b style="font-size:13.5px">Square breathing</b><span class="btn ghost" style="padding:5px 12px; font-size:11.5px">Start</span></div>
+            <div class="sub" style="margin-top:3px">Inhale 4 · Hold 4 · Exhale 4 · Hold 4</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:13.5px">Bee breathing</b><span class="btn ghost" style="padding:5px 12px; font-size:11.5px">Start</span></div>
+            <div class="sub" style="margin-top:3px">Hum gently as you exhale, ears lightly covered</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:13.5px">4-7-8 breathing</b><span class="btn ghost" style="padding:5px 12px; font-size:11.5px">Start</span></div>
+            <div class="sub" style="margin-top:3px">Inhale 4 · Hold 7 · Exhale 8</div>
+          </div>
+
+          <div class="grow"></div>
+          <div class="foot-note">A moment to pause, reset, and breathe.</div>
+        </div>
+        <div class="tabs">
+          <div class="tab on"><i></i>Home</div><div class="tab"><i></i>Track</div><div class="tab"><i></i>Calendar</div><div class="tab"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>15 · Breathing exercises</span>Reached from Home</h3>
+      <p class="new">Footer note softened to "A moment to pause, reset, and breathe" — warmer than the disclaimer-y phrasing it replaced.</p></div>
+    </div>
+
+    <!-- 16 · RECIPES (10, rebuilt) -->
+    <div class="cell">
+      <div class="ph"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h1a" style="margin-top:6px">IBD-friendly recipes</div>
+          <div class="chips">
+            <span class="chip on">All</span><span class="chip">Meat</span><span class="chip">Vegan</span><span class="chip">Vegetarian</span><span class="chip">Drinks</span><span class="chip">Snack</span><span class="chip">Dessert</span>
+          </div>
+
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Baked chicken &amp; white rice</b><span class="chip">Meat</span></div>
+            <div class="sub" style="margin-top:2px">Skinless chicken breast, plain white rice, olive oil. 30 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Turkey meatball soup</b><span class="chip">Meat</span></div>
+            <div class="sub" style="margin-top:2px">Lean ground turkey, broth, well-cooked carrots. 35 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Vegan mashed potato &amp; carrots</b><span class="chip">Vegan</span></div>
+            <div class="sub" style="margin-top:2px">Peeled potatoes, olive oil, soft-cooked carrots. 25 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Tofu &amp; rice congee</b><span class="chip">Vegan</span></div>
+            <div class="sub" style="margin-top:2px">Silken tofu simmered into plain rice congee, ginger. 40 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Scrambled eggs &amp; white toast</b><span class="chip">Vegetarian</span></div>
+            <div class="sub" style="margin-top:2px">Soft scrambled eggs, crustless white toast. 8 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Cottage cheese &amp; ripe banana</b><span class="chip">Vegetarian</span></div>
+            <div class="sub" style="margin-top:2px">Smooth cottage cheese, mashed ripe banana. 3 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Ginger tea</b><span class="chip">Drink</span></div>
+            <div class="sub" style="margin-top:2px">Fresh ginger steeped in hot water, honey to taste. 5 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Electrolyte water infusion</b><span class="chip">Drink</span></div>
+            <div class="sub" style="margin-top:2px">Water, a pinch of salt, a squeeze of citrus. 2 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Rice cakes &amp; almond butter</b><span class="chip">Snack</span></div>
+            <div class="sub" style="margin-top:2px">Plain rice cakes, thin layer of smooth almond butter. 2 min.</div>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:12.5px">Baked cinnamon applesauce</b><span class="chip">Dessert</span></div>
+            <div class="sub" style="margin-top:2px">Peeled apples baked soft with cinnamon, no skins. 30 min.</div>
+          </div>
+
+          <div class="grow"></div>
+          <div class="foot-note">General, gentle-food ideas — not a prescribed diet. Always check with your care team.</div>
+        </div>
+        <div class="tabs">
+          <div class="tab on"><i></i>Home</div><div class="tab"><i></i>Track</div><div class="tab"><i></i>Calendar</div><div class="tab"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>16 · IBD-friendly recipes</span>Ten recipes, six categories</h3>
+      <p class="new">Completely rebuilt: 2 meat, 2 vegan, 2 vegetarian, 2 drinks, 1 snack, 1 dessert, each filterable by category. The list scrolls past what's visible here — same pattern as the other log/history screens.</p></div>
+    </div>
+
+    <!-- 17 · CALENDAR + INSIGHTS, SCROLLABLE (dark) -->
+    <div class="cell">
+      <div class="ph dark"><div class="scr"><div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span>●●●</span></div>
+        <div class="body">
+          <div class="h-row" style="margin-top:6px"><div class="h1a">August 2026</div><span class="sub">‹ &nbsp; ›</span></div>
+          <div class="card">
+            <svg viewBox="0 0 252 160" style="width:100%">
+              <g font-size="9" fill="var(--a-sub)" text-anchor="middle">
+                <text x="18" y="12">M</text><text x="54" y="12">T</text><text x="90" y="12">W</text>
+                <text x="126" y="12">T</text><text x="162" y="12">F</text><text x="198" y="12">S</text><text x="234" y="12">S</text>
+              </g>
+              <g font-size="10" fill="var(--a-ink)" text-anchor="middle">
+                <text x="198" y="40">1</text><text x="234" y="40">2</text>
+                <text x="18" y="76">3</text><text x="54" y="76">4</text><text x="90" y="76">5</text><text x="126" y="76">6</text><text x="162" y="76">7</text><text x="198" y="76">8</text><text x="234" y="76">9</text>
+                <text x="18" y="112">10</text><text x="54" y="112">11</text><text x="90" y="112">12</text><text x="126" y="112">13</text><text x="162" y="112">14</text><text x="198" y="112">15</text><text x="234" y="112">16</text>
+              </g>
+              <circle cx="54" cy="70" r="14" fill="none" stroke="var(--a-blue)" stroke-width="1.5"/>
+              <g>
+                <circle cx="198" cy="48" r="3" fill="var(--a-green)"/><circle cx="234" cy="48" r="3" fill="var(--a-green)"/>
+                <circle cx="18" cy="84" r="3" fill="var(--a-green)"/><circle cx="54" cy="84" r="3" fill="var(--a-green)"/>
+                <circle cx="90" cy="84" r="3" fill="var(--a-amber)"/><circle cx="126" cy="84" r="3" fill="var(--a-coral)"/>
+                <circle cx="162" cy="84" r="3" fill="var(--a-coral)"/><circle cx="198" cy="84" r="3" fill="var(--a-amber)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="chips">
+            <span class="chip"><span class="dot" style="background:var(--a-green)"></span> Good day</span>
+            <span class="chip"><span class="dot" style="background:var(--a-amber)"></span> Maybe a flare</span>
+            <span class="chip"><span class="dot" style="background:var(--a-coral)"></span> Flare</span>
+          </div>
+          <div class="card">
+            <div class="h-row"><b style="font-size:13px">Tue, Aug 4</b><span class="pill no">Good day</span></div>
+            <div class="sub" style="margin-top:3px">Humira due Fri · GI follow-up Aug 12</div>
+          </div>
+
+          <div class="lbl" style="margin-top:6px">Your patterns · scroll for more</div>
+          <div class="card">
+            <div class="lbl" style="color:var(--a-blue)">Sleep → symptoms</div>
+            <div class="sub" style="margin:2px 0 4px">On days after less than 6 h of sleep, pain was higher in <b>7 of 9</b> entries.</div>
+            <svg viewBox="0 0 240 40" style="width:100%">
+              <polyline points="0,30 30,26 60,29 90,12 120,8 150,22 180,26 210,10 240,14" fill="none" stroke="var(--a-blue)" stroke-width="2"/>
+              <polyline points="0,35 30,33 60,34 90,25 120,21 150,31 180,33 210,23 240,27" fill="none" stroke="var(--a-green)" stroke-width="2" stroke-dasharray="4 3"/>
+            </svg>
+          </div>
+          <div class="card">
+            <div class="lbl" style="color:var(--a-blue)">Sleep → stool</div>
+            <div class="sub" style="margin:2px 0 4px">Looser stools (types 6–7) showed up the day after short sleep in <b>5 of 7</b> instances.</div>
+            <div class="row" style="gap:4px">
+              <span class="chip am" style="font-size:10px; padding:3px 7px">&lt;6h → Type 6</span>
+              <span class="chip g" style="font-size:10px; padding:3px 7px">7h+ → Type 4</span>
+            </div>
+          </div>
+          <div class="card" style="background:var(--a-green-soft); border-color:transparent">
+            <div class="sub" style="color:var(--a-green); font-weight:600">Suggested for Dr. Patel: "Could my sleep be affecting my symptoms?"</div>
+          </div>
+          <div class="foot-note">Patterns from your own logs — not a diagnosis or medical advice.</div>
+
+          <div class="grow"></div>
+        </div>
+        <div class="tabs">
+          <div class="tab"><i></i>Home</div><div class="tab"><i></i>Track</div><div class="tab on"><i></i>Calendar</div><div class="tab"><i></i>More</div>
+        </div>
+      </div></div>
+      <div class="cap"><h3><span>17 · Calendar + Insights</span>One scrollable screen</h3>
+      <p class="new">Insights no longer has its own tab or screen — its pattern cards now live below the month view here, reached by scrolling. Tab bar is four tabs everywhere in the app now.</p></div>
+    </div>
+
+  </div>
+</div>
